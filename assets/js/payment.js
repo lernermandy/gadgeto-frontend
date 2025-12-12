@@ -44,8 +44,8 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         const p = await res.json();
         const generatedUpiLink = p.upi_link || (() => {
-          const pa = p.vpa || 'jmandar0707@okhdfcbank';
-          const pn = encodeURIComponent(p.name || 'mandar jadhav');
+          const pa = 'jmandar0707@okhdfcbank';
+          const pn = encodeURIComponent('mandar jadhav');
           const tr = encodeURIComponent(p.reference_id || p.session_id);
           return `upi://pay?pa=${pa}&pn=${pn}&am=${amount.toFixed(2)}&cu=INR&tn=Order%20${orderId}&tr=${tr}`;
         })();
