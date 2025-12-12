@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <div id="site-header"></div>
+  <main style="padding:16px;">
+    <h2>Checkout</h2>
+    <form id="checkoutForm" style="display:grid; gap:8px; max-width:480px">
+      <h3>Billing Address</h3>
+      <input name="b_line1" placeholder="Line 1" required />
+      <input name="b_city" placeholder="City" required />
+      <input name="b_state" placeholder="State" required />
+      <input name="b_postal" placeholder="Postal Code" required />
+      <input name="b_country" placeholder="Country" required />
+      <h3>Shipping Address</h3>
+      <input name="s_line1" placeholder="Line 1" required />
+      <input name="s_city" placeholder="City" required />
+      <input name="s_state" placeholder="State" required />
+      <input name="s_postal" placeholder="Postal Code" required />
+      <input name="s_country" placeholder="Country" required />
+
+      <h3>Payment Method</h3>
+      <div style="display:flex; flex-direction:column; gap:8px">
+        <label>
+          <input type="radio" name="payment_method" value="online" checked> Online Payment (UPI)
+        </label>
+        <label>
+          <input type="radio" name="payment_method" value="cod"> Cash on Delivery
+        </label>
+      </div>
+      <button type="submit" style="padding:8px 12px; background:#0a7; color:#fff">Place Order</button>
+    </form>
+  </main>
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/header.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/checkout.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reset Password</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main style="padding:16px;">
+    <h2>Reset Password</h2>
+    <form id="resetForm" style="display:grid; gap:8px; max-width:360px">
+      <input name="token" placeholder="Token" />
+      <input name="password" placeholder="New Password" type="password" required />
+      <button type="submit" style="padding:8px 12px; background:#0a7; color:#fff">Reset</button>
+    </form>
+    <div id="msg" style="margin-top:12px;"></div>
+  </main>
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/header.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/admin-reset.js"></script>
+</body>
+</html>

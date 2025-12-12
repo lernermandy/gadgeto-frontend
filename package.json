@@ -1,0 +1,9 @@
+{
+    "name": "gadgeto-frontend",
+    "version": "1.0.0",
+    "description": "Gadgeto E-commerce Frontend",
+    "scripts": {
+        "dev": "python -m http.server 8080",
+        "build": "echo 'Static site - no build needed'"
+    }
+}
