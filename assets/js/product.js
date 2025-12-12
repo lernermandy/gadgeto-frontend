@@ -26,13 +26,26 @@ window.addEventListener("DOMContentLoaded", async () => {
     ${isPhone ? (camera ? `<div>Camera: ${camera}</div>` : "") : (p.temperature_range ? `<div>Temperature: ${p.temperature_range}</div>` : "")}
     ${isPhone ? (os ? `<div>OS: ${os}</div>` : "") : (p.humidity_range ? `<div>Humidity: ${p.humidity_range}</div>` : "")}
     <div>Price: ₹${p.price.toLocaleString()}</div>
-    <button id="add">Add to Cart</button>
+    <div style="margin-top:20px; display:flex; gap:10px;">
+      <button id="add" style="padding:10px 20px; background:#f0c14b; border:1px solid #a88734; cursor:pointer;">Add to Cart</button>
+      <button id="buy" style="padding:10px 20px; background:#fa8900; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold;">Buy Now</button>
+    </div>
   `;
-  document.getElementById("add").addEventListener("click", () => {
+
+  const addToCart = () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     const idx = cart.findIndex(i => i.product_id === p.id);
     if (idx >= 0) cart[idx].quantity += 1; else cart.push({ product_id: p.id, name: p.name, price: p.price, quantity: 1 });
     localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
+  document.getElementById("add").addEventListener("click", () => {
+    addToCart();
     location.href = "cart.html";
+  });
+
+  document.getElementById("buy").addEventListener("click", () => {
+    addToCart();
+    location.href = "checkout.html";
   });
 });
