@@ -14,26 +14,33 @@ window.addEventListener("DOMContentLoaded", () => {
   const isLoggedIn = !!user;
   const accountLabel = isLoggedIn ? "Account" : "Account";
   container.innerHTML = `
-    <div style="display:flex; align-items:center; gap:12px; padding:12px; border-bottom:1px solid #eee;">
-      <a href="index.html" style="font-weight:700; color:#1971c2; text-decoration:none">Gadgeto</a>
-      <div style="flex:1; display:flex; gap:8px;">
-        <input id="globalSearch" placeholder="Search for Products, Brands and More" style="flex:1; padding:8px 10px; border:1px solid #ddd; border-radius:8px" />
-        <button id="globalSearchBtn" style="padding:8px 12px">Search</button>
+    <nav>
+      <h1><a href="index.html">Gadgeto</a></h1>
+      
+      <div style="flex:1; max-width:500px; display:flex; gap:10px; margin:0 20px;">
+        <input id="globalSearch" placeholder="Search for products..." />
+        <button id="globalSearchBtn">Search</button>
       </div>
-      <div style="position:relative">
-        <button id="accountBtn" style="padding:8px 12px">${accountLabel}</button>
-        <div id="accountMenu" style="position:absolute; right:0; top:36px; background:#fff; border:1px solid #ddd; box-shadow:0 2px 8px rgba(0,0,0,.08); display:none; min-width:180px;">
-          <div style="padding:8px 12px; font-weight:600">Help & Settings</div>
-          <a href="${user ? (user.is_admin ? 'admin-dashboard.html' : 'user-dashboard.html') : 'signup.html'}" style="display:block; padding:6px 12px; text-decoration:none; color:#111">Your Account</a>
-          <a href="#" style="display:block; padding:6px 12px; text-decoration:none; color:#111">Customer Service</a>
-          ${isLoggedIn ? '<a id="logoutLink" href="#" style="display:block; padding:6px 12px; text-decoration:none; color:#111">Logout</a>' : '<a href="login.html" style="display:block; padding:6px 12px; text-decoration:none; color:#111">Sign in</a>'}
-          <div style="padding:8px 12px; font-weight:600">Trending</div>
-          <a href="index.html?q=Chamber" style="display:block; padding:6px 12px; text-decoration:none; color:#111">Bestsellers</a>
-          <a href="index.html?q=New" style="display:block; padding:6px 12px; text-decoration:none; color:#111">New Releases</a>
-        </div>
-      </div>
-      <a href="cart.html" style="padding:8px 12px; text-decoration:none;">Cart</a>
-    </div>
+
+      <ul>
+        <li><a href="cart.html">Cart</a></li>
+        <li style="position:relative">
+          <button id="accountBtn" class="btn-outline" style="padding:0.5rem 1rem;">${accountLabel}</button>
+          <div id="accountMenu" style="position:absolute; right:0; top:110%; background:#fff; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.15); display:none; min-width:200px; z-index:1000; overflow:hidden;">
+            <div style="padding:12px; border-bottom:1px solid #eee; background:#f8f9fa; font-weight:600; color:#667eea">My Account</div>
+            <div style="padding:8px 0;">
+                <a href="${user ? (user.is_admin ? 'admin-dashboard.html' : 'user-dashboard.html') : 'signup.html'}" style="display:block; padding:8px 16px; text-decoration:none; color:#333; transition:bg 0.2s">Dashboard</a>
+                <a href="#" style="display:block; padding:8px 16px; text-decoration:none; color:#333">Orders</a>
+                <a href="#" style="display:block; padding:8px 16px; text-decoration:none; color:#333">Help Center</a>
+                ${isLoggedIn ?
+      '<div style="border-top:1px solid #eee; margin-top:8px;"></div><a id="logoutLink" href="#" style="display:block; padding:8px 16px; text-decoration:none; color:#e74c3c">Logout</a>' :
+      '<div style="border-top:1px solid #eee; margin-top:8px;"></div><a href="login.html" style="display:block; padding:8px 16px; text-decoration:none; color:#667eea; font-weight:600;">Sign In</a>'
+    }
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
   `;
   const menu = document.getElementById("accountMenu");
   document.getElementById("accountBtn").addEventListener("click", () => {

@@ -10,32 +10,89 @@
 
 <body>
   <div id="site-header"></div>
-  <main style="padding:16px;">
+  <main>
     <h2>Checkout</h2>
-    <form id="checkoutForm" style="display:grid; gap:8px; max-width:480px">
-      <h3>Billing Address</h3>
-      <input name="b_line1" placeholder="Line 1" required />
-      <input name="b_city" placeholder="City" required />
-      <input name="b_state" placeholder="State" required />
-      <input name="b_postal" placeholder="Postal Code" required />
-      <input name="b_country" placeholder="Country" required />
-      <h3>Shipping Address</h3>
-      <input name="s_line1" placeholder="Line 1" required />
-      <input name="s_city" placeholder="City" required />
-      <input name="s_state" placeholder="State" required />
-      <input name="s_postal" placeholder="Postal Code" required />
-      <input name="s_country" placeholder="Country" required />
+    <form id="checkoutForm" class="checkout-layout">
+      <!-- Left Column: Addresses -->
+      <div>
+        <div class="card">
+          <h3>Billing Address</h3>
+          <div class="form-group">
+            <label>Address Line 1</label>
+            <input type="text" name="b_line1" placeholder="123 Main St" required />
+          </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" name="b_city" placeholder="City" required />
+            </div>
+            <div class="form-group">
+              <label>State</label>
+              <input type="text" name="b_state" placeholder="State" required />
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label>Postal Code</label>
+              <input type="text" name="b_postal" placeholder="Postal Code" required />
+            </div>
+            <div class="form-group">
+              <label>Country</label>
+              <input type="text" name="b_country" placeholder="Country" required />
+            </div>
+          </div>
+        </div>
 
-      <h3>Payment Method</h3>
-      <div style="display:flex; flex-direction:column; gap:8px">
-        <label>
-          <input type="radio" name="payment_method" value="online" checked> Online Payment (UPI)
-        </label>
-        <label>
-          <input type="radio" name="payment_method" value="cod"> Cash on Delivery
-        </label>
+        <div class="card">
+          <h3>Shipping Address</h3>
+          <div class="form-group">
+            <label>Address Line 1</label>
+            <input type="text" name="s_line1" placeholder="123 Main St" required />
+          </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" name="s_city" placeholder="City" required />
+            </div>
+            <div class="form-group">
+              <label>State</label>
+              <input type="text" name="s_state" placeholder="State" required />
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label>Postal Code</label>
+              <input type="text" name="s_postal" placeholder="Postal Code" required />
+            </div>
+            <div class="form-group">
+              <label>Country</label>
+              <input type="text" name="s_country" placeholder="Country" required />
+            </div>
+          </div>
+        </div>
       </div>
-      <button type="submit" style="padding:8px 12px; background:#0a7; color:#fff">Place Order</button>
+
+      <!-- Right Column: Payment & Summary -->
+      <div>
+        <div class="card">
+          <h3>Payment Method</h3>
+          <div class="form-group">
+            <label
+              style="cursor:pointer; display:flex; align-items:center; gap:0.5rem; padding:0.5rem; border:1px solid #e0e0e0; border-radius:8px;">
+              <input type="radio" name="payment_method" value="online" checked>
+              <span>Online Payment (UPI)</span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label
+              style="cursor:pointer; display:flex; align-items:center; gap:0.5rem; padding:0.5rem; border:1px solid #e0e0e0; border-radius:8px;">
+              <input type="radio" name="payment_method" value="cod">
+              <span>Cash on Delivery</span>
+            </label>
+          </div>
+          <button type="submit" style="width:100%; margin-top:1rem;">Place Order</button>
+        </div>
+      </div>
     </form>
   </main>
   <script src="assets/js/utils.js"></script>
