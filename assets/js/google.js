@@ -20,9 +20,11 @@ window.addEventListener("DOMContentLoaded", async () => {
       console.log("✅ Google Client ID fetched successfully");
     } else {
       console.error("❌ Failed to fetch Google Client ID");
+      clientId = "95703734000-5g9099b15uh4md9hav06ppe6mvj8apvd.apps.googleusercontent.com";
     }
   } catch (e) {
     console.error("❌ Error fetching Google Client ID:", e);
+    clientId = "95703734000-5g9099b15uh4md9hav06ppe6mvj8apvd.apps.googleusercontent.com";
   }
 
   // Fallback to localStorage
