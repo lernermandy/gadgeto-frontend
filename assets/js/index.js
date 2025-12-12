@@ -10,30 +10,42 @@ window.addEventListener("DOMContentLoaded", async () => {
     products.forEach(p => {
       const card = document.createElement("div");
       card.className = "product-card";
-      if (p.image_url) card.style.backgroundImage = `url(${p.image_url})`;
-      const content = document.createElement("div");
-      content.className = "content";
-      const isPhone = p.category && p.category.toLowerCase().includes("smartphone");
-      let battery = null, camera = null, os = null;
-      if (isPhone && p.description) {
-        const d = p.description;
-        const m1 = /Battery\s*Capacity\s*:\s*([^;]+)/i.exec(d); if (m1) battery = m1[1].trim();
-        const m2 = /Primary\s*Camera\s*:\s*([^;]+)/i.exec(d); if (m2) camera = m2[1].trim();
-        const m3 = /Operating\s*System\s*:\s*([^;]+)/i.exec(d); if (m3) os = m3[1].trim();
+
+      const isPhone = p.category && p.category.toLowerCase().includes("mobile");
+      let specs = "";
+
+      if (isPhone) {
+        // Show compact specs for phones
+        specs = `
+            <div style="font-size:0.85rem; color:var(--text-gray); margin-bottom:4px;">
+                ${p.battery_capacity ? `<span>🔋 ${p.battery_capacity}</span>` : ''} 
+                ${p.primary_camera ? `<span style="margin-left:8px">📷 ${p.primary_camera}</span>` : ''}
+            </div>
+         `;
+      } else {
+        // Show capacity or temp for other items
+        specs = `
+            <div style="font-size:0.85rem; color:var(--text-gray); margin-bottom:4px;">
+               ${p.capacity_litres ? `<span>Use: ${p.capacity_litres}L</span>` : `<span>${p.category}</span>`}
+            </div>
+         `;
       }
-      content.innerHTML = `
-        <h3 style="margin:0 0 8px">${p.name}</h3>
-        <div>Category: ${p.category}</div>
-        ${isPhone ? (battery ? `<div>Battery: ${battery}</div>` : "") : `<div>Capacity: ${p.capacity_litres || "-"} L</div>`}
-        ${isPhone ? (camera ? `<div>Camera: ${camera}</div>` : "") : (p.temperature_range ? `<div>Temperature: ${p.temperature_range}</div>` : "")}
-        ${isPhone ? (os ? `<div>OS: ${os}</div>` : "") : (p.humidity_range ? `<div>Humidity: ${p.humidity_range}</div>` : "")}
-        <div>Price: ₹${p.price.toLocaleString()}</div>
-        <div style="margin-top:8px">
-          <a href="product.html?id=${p.id}" style="margin-right:8px">View</a>
-          <button data-id="${p.id}" data-name="${p.name}" data-price="${p.price}">Add to Cart</button>
+
+      card.innerHTML = `
+        <div class="product-image" style="background-image: url('${p.image_url || 'assets/images/placeholder.png'}'); background-size: contain; background-repeat: no-repeat; background-position: center; height: 180px; background-color: #fff; border-bottom: 1px solid #eee;"></div>
+        <div class="product-info" style="padding: 12px; display: flex; flex-direction: column; flex: 1;">
+          <h3 class="product-title" style="font-size: 1rem; margin-bottom: 0.5rem; line-height: 1.3; height: 2.6rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${p.name}</h3>
+          
+          ${specs}
+
+          <div class="product-price" style="margin-top: auto; font-size: 1.1rem; margin-bottom: 10px;">₹${p.price.toLocaleString()}</div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <a href="product.html?id=${p.id}" class="btn btn-secondary" style="font-size: 0.9rem; padding: 8px;">View</a>
+            <button class="btn" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" style="font-size: 0.9rem; padding: 8px;">Add</button>
+          </div>
         </div>
       `;
-      card.appendChild(content);
       container.appendChild(card);
     });
 
