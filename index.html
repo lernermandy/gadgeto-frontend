@@ -148,116 +148,6 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
-
-    #products {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .product-card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s;
-      border: 2px solid transparent;
-    }
-
-    .product-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-      border-color: #667eea;
-    }
-
-    .product-card h3 {
-      color: #2a5298;
-      font-size: 16px;
-      margin-bottom: 12px;
-      min-height: 45px;
-    }
-
-    .product-card p {
-      color: #666;
-      font-size: 14px;
-      margin: 6px 0;
-    }
-
-    .product-price {
-      color: #27ae60;
-      font-size: 20px;
-      font-weight: 700;
-      margin: 12px 0;
-    }
-
-    .product-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .product-actions a,
-    .product-actions button {
-      flex: 1;
-      padding: 10px;
-      text-align: center;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 13px;
-      transition: all 0.3s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-view {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-    }
-
-    .btn-view:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-    }
-
-    .btn-cart {
-      background: #27ae60;
-      color: white;
-    }
-
-    .btn-cart:hover {
-      background: #229954;
-      transform: scale(1.05);
-    }
-
-    .category-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      color: white;
-      padding: 4px 12px;
-      border-radius: 15px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 40px;
-      color: #667eea;
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    @media (max-width: 768px) {
-      .content-wrapper {
-        grid-template-columns: 1fr;
-      }
-
-      .sidebar {
-        display: none;
-      }
-    }
   </style>
 </head>
 
@@ -298,7 +188,7 @@
           </div>
         </div>
 
-        <div id="products" class="loading">Loading amazing products...</div>
+        <div id="products" class="product-grid loading">Loading amazing products...</div>
       </main>
     </div>
   </div>
