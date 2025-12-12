@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       }
 
       card.innerHTML = `
-        <div class="product-image" style="background-image: url('${p.image_url || 'assets/images/placeholder.png'}'); background-size: contain; background-repeat: no-repeat; background-position: center; height: 180px; background-color: #fff; border-bottom: 1px solid #eee;"></div>
+        <div class="product-image" style="background-image: url('${p.image_url || 'assets/images/placeholder.svg'}'); background-size: contain; background-repeat: no-repeat; background-position: center; height: 180px; background-color: #fff; border-bottom: 1px solid #eee;"></div>
         <div class="product-info" style="padding: 12px; display: flex; flex-direction: column; flex: 1;">
           <h3 class="product-title" style="font-size: 1rem; margin-bottom: 0.5rem; line-height: 1.3; height: 2.6rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${p.name}</h3>
           
@@ -42,7 +42,7 @@ window.addEventListener("DOMContentLoaded", async () => {
           
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
             <a href="product.html?id=${p.id}" class="btn btn-secondary" style="font-size: 0.9rem; padding: 8px;">View</a>
-            <button class="btn" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" style="font-size: 0.9rem; padding: 8px;">Add</button>
+            <button class="btn" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-image="${p.image_url || 'assets/images/placeholder.svg'}" style="font-size: 0.9rem; padding: 8px;">Add</button>
           </div>
         </div>
       `;
@@ -54,9 +54,10 @@ window.addEventListener("DOMContentLoaded", async () => {
         const id = Number(btn.dataset.id);
         const name = btn.dataset.name;
         const price = Number(btn.dataset.price);
+        const image = btn.dataset.image;
         const cart = JSON.parse(localStorage.getItem("cart") || "[]");
         const idx = cart.findIndex(i => i.product_id === id);
-        if (idx >= 0) cart[idx].quantity += 1; else cart.push({ product_id: id, name, price, quantity: 1 });
+        if (idx >= 0) cart[idx].quantity += 1; else cart.push({ product_id: id, name, price, quantity: 1, image });
         localStorage.setItem("cart", JSON.stringify(cart));
         alert("Added to cart");
       });
